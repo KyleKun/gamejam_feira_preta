@@ -107,7 +107,7 @@ packages:
     source: hosted
     version: "5.2.1"
   flame:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flame
       url: "https://pub.dartlang.org"

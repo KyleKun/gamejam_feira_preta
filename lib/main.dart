@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.util.setLandscape();
   await Flame.util.fullScreen();
-  runApp(MaterialApp(home: Menu()));
+  runApp(MaterialApp(home: Menu(), debugShowCheckedModeBanner: false));
 }
 
 class Menu extends StatelessWidget {
