@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
-import 'package:gamejam/game/player/faxineira.dart';
+import 'package:gamejam/game/player/beatriz.dart';
 
 class BarLifeComponent extends InterfaceComponent {
   double padding = 20;
@@ -28,8 +28,8 @@ class BarLifeComponent extends InterfaceComponent {
     if (this.gameRef.player != null) {
       life = this.gameRef.player.life;
       maxLife = this.gameRef.player.maxLife;
-      if (this.gameRef.player is Faxineira) {
-        stamina = (this.gameRef.player as Faxineira).stamina;
+      if (this.gameRef.player is Beatriz) {
+        stamina = (this.gameRef.player as Beatriz).stamina;
       }
     }
     super.update(t);

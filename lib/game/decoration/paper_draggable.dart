@@ -3,11 +3,11 @@ import 'package:bonfire/decoration/decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:gamejam/game/utils/constants.dart';
 
-class BarrelDraggable extends GameDecoration with DragGesture {
+class PaperDraggable extends GameDecoration with DragGesture {
   TextConfig _textConfig;
-  BarrelDraggable(Position initPosition)
+  PaperDraggable(Position initPosition)
       : super.sprite(
-          Sprite('decoration/barrel.png'),
+          Sprite('decoration/paper.png'),
           initPosition: initPosition,
           width: Constants.tileSize,
           height: Constants.tileSize,

@@ -1,11 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":20,
  "infinite":false,
  "layers":[
@@ -50,17 +43,6 @@
          "id":4,
          "name":"Camada de Objetos 1",
          "objects":[
-                {
-                 "height":0,
-                 "id":1,
-                 "name":"npc1",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":275.954545454545,
-                 "y":114.318181818182
-                }, 
                 {
                  "height":0,
                  "id":2,
@@ -383,7 +365,7 @@
                 {
                  "height":0,
                  "id":44,
-                 "name":"trash",
+                 "name":"b",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -394,7 +376,7 @@
                 {
                  "height":0,
                  "id":45,
-                 "name":"trash",
+                 "name":"b",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -405,7 +387,7 @@
                 {
                  "height":0,
                  "id":46,
-                 "name":"trash",
+                 "name":"b",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -841,6 +823,28 @@
                  "width":0,
                  "x":243.545454545455,
                  "y":98.9090909090909
+                }, 
+                {
+                 "height":0,
+                 "id":90,
+                 "name":"npc3",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":65.6666666666667,
+                 "y":125.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":91,
+                 "name":"paper",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":93.6666666666667,
+                 "y":102.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -849,7 +853,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":91,
+ "nextobjectid":92,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.5",

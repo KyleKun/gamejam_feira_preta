@@ -17,10 +17,12 @@ class PlayerSpriteSheet {
       );
 
   static Animation get idleTop => Animation.sequenced(
-        "player/faxineira_top.png",
-        1,
+        "player/idle_top.png",
+        2,
+        amountPerRow: 1,
         textureWidth: 160,
         textureHeight: 160,
+        stepTime: 1.0,
       );
 
   static Animation get idleBottom => Animation.sequenced(

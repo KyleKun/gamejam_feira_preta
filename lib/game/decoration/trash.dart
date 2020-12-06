@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:gamejam/game/player/faxineira.dart';
+import 'package:gamejam/game/player/beatriz.dart';
 import 'package:gamejam/game/utils/constants.dart';
 import 'package:gamejam/game/utils/sound.dart';
 
@@ -32,7 +32,7 @@ class Trash extends GameDecoration with Sensor {
   void onContact(collision) {
     if (!hasContact && collision is Player) {
       hasContact = true;
-      (gameRef.player as Faxineira).trashCount += 1;
+      (gameRef.player as Beatriz).taskCount += 1;
       Sound.completeSound();
     }
   }

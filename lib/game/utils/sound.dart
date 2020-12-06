@@ -11,6 +11,10 @@ class Sound {
     Flame.audio.play('complete.wav', volume: 0.4);
   }
 
+  static void bip() {
+    Flame.audio.play('bip.wav', volume: 0.4);
+  }
+
   static void attackRange() {
     Flame.audio.play('attack_fire_ball.wav', volume: 0.4);
   }

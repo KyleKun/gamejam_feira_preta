@@ -2,28 +2,27 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-
-import '../decoration/paper_draggable.dart';
-import '../decoration/big_table.dart';
-import '../decoration/small_table.dart';
-import '../decoration/torch.dart';
-import '../enemy/all_enemies.dart';
+import 'package:gamejam/game/decoration/copiadora.dart';
+import 'package:gamejam/game/decoration/paper_draggable.dart';
+import 'package:gamejam/game/decoration/trash.dart';
+import 'package:gamejam/game/npc/npc2.dart';
+import 'package:gamejam/game/npc/npc3.dart';
+import 'package:gamejam/game/npc/npc_1.dart';
 import '../player/beatriz.dart';
 import '../player/interfaces.dart';
 import '../utils/constants.dart';
 import '../utils/invisible_walls.dart';
 import '../utils/sound.dart';
-import '../utils/change_map.dart';
 
-class BattleMap extends StatefulWidget {
+class OfficeMap3 extends StatefulWidget {
   final Position position;
-  const BattleMap({Key key, this.position}) : super(key: key);
+  const OfficeMap3({Key key, this.position}) : super(key: key);
 
   @override
-  _BattleMapState createState() => _BattleMapState();
+  _OfficeMap3State createState() => _OfficeMap3State();
 }
 
-class _BattleMapState extends State<BattleMap> implements GameListener {
+class _OfficeMap3State extends State<OfficeMap3> implements GameListener {
   bool showGameOver = false;
 
   GameController _controller = new GameController();
@@ -37,7 +36,7 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
   @override
   void initState() {
     _controller = GameController()..setListener(this);
-    Sound.playBattleSound();
+    Sound.playBackgroundSound();
     super.initState();
   }
 
@@ -62,30 +61,30 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
               size: 100,
               isFixed: true,
             ),
-            actions: [
-              JoystickAction(
-                actionId: 0,
-                sprite: Sprite('joystick_attack.png'),
-                align: JoystickActionAlign.BOTTOM_RIGHT,
-                size: 80,
-                margin: EdgeInsets.only(bottom: 50, right: 50),
-              ),
-              JoystickAction(
-                actionId: 1,
-                sprite: Sprite('joystick_attack_range.png'),
-                spriteBackgroundDirection: Sprite('joystick_background.png'),
-                enableDirection: true,
-                size: 50,
-                margin: EdgeInsets.only(bottom: 50, right: 160),
-              )
-            ],
+            // actions: [
+            //   JoystickAction(
+            //     actionId: 0,
+            //     sprite: Sprite('joystick_attack.png'),
+            //     align: JoystickActionAlign.BOTTOM_RIGHT,
+            //     size: 80,
+            //     margin: EdgeInsets.only(bottom: 50, right: 50),
+            //   ),
+            //   JoystickAction(
+            //     actionId: 1,
+            //     sprite: Sprite('joystick_attack_range.png'),
+            //     spriteBackgroundDirection: Sprite('joystick_background.png'),
+            //     enableDirection: true,
+            //     size: 50,
+            //     margin: EdgeInsets.only(bottom: 50, right: 160),
+            //   )
+            // ],
           ),
           player: Beatriz(
             widget.position,
           ),
-          interface: BeatrizBattleInterface(),
+          interface: BeatrizOfficeInterface3(), // _getInterface(),
           map: TiledWorldMap(
-            'tiled/battle_map.json',
+            'tiled/fase3.json',
             forceTileSize: Size(Constants.tileSize, Constants.tileSize),
           )
             ..registerObject(
@@ -101,17 +100,13 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
             ..registerObject('right_wall',
                 (x, y, width, height) => VerticalInvisibleWall(Position(x, y)))
             ..registerObject(
-                'enemy', (x, y, width, height) => CommonEnemy1(Position(x, y)))
-            ..registerObject(
-                'torch', (x, y, width, height) => Torch(Position(x, y)))
-            // ..registerObject('barrel',
-            //     (x, y, width, height) => BarrelDraggable(Position(x, y)))
-            ..registerObject('small_table',
-                (x, y, width, height) => SmallTable(Position(x, y)))
-            ..registerObject(
-                'big_table', (x, y, width, height) => BigTable(Position(x, y))),
+                'npc3', (x, y, width, height) => NPC3(Position(x, y)))
+            ..registerObject('b',
+                (x, y, width, height) => BlockInvisibleWall(Position(x, y)))
+            ..registerObject('paper',
+                (x, y, width, height) => PaperDraggable(Position(x, y))),
+
           background: BackgroundColorGame(Colors.black87),
-          lightingColorGame: Colors.black.withOpacity(0.5),
           cameraZoom: 1.0,
         );
       },

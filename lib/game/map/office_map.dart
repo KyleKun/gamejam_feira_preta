@@ -2,10 +2,12 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:gamejam/game/decoration/copiadora.dart';
 import 'package:gamejam/game/decoration/trash.dart';
+import 'package:gamejam/game/npc/npc2.dart';
 import 'package:gamejam/game/npc/npc_1.dart';
-import '../player/faxineira.dart';
-import '../player/faxineira_interface.dart';
+import '../player/beatriz.dart';
+import '../player/interfaces.dart';
 import '../utils/constants.dart';
 import '../utils/invisible_walls.dart';
 import '../utils/sound.dart';
@@ -21,7 +23,7 @@ class OfficeMap extends StatefulWidget {
 class _OfficeMapState extends State<OfficeMap> implements GameListener {
   bool showGameOver = false;
 
-  //GameController _controller = new GameController();
+  GameController _controller = new GameController();
 
   void changeCountLiveEnemies(int count) {
     return;
@@ -31,7 +33,7 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
 
   @override
   void initState() {
-    //_controller = GameController()..setListener(this);
+    _controller = GameController()..setListener(this);
     Sound.playBackgroundSound();
     super.initState();
   }
@@ -46,8 +48,6 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        Constants.tileSize = max(constraints.maxHeight, constraints.maxWidth) /
-            (kIsWeb ? 25 : 22);
         return BonfireTiledWidget(
           joystick: Joystick(
             keyboardEnable: true,
@@ -75,10 +75,10 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
             //   )
             // ],
           ),
-          player: Faxineira(
+          player: Beatriz(
             widget.position,
           ),
-          interface: FaxineiraOfficeInterface(),
+          interface: BeatrizOfficeInterface(), // _getInterface(),
           map: TiledWorldMap(
             'tiled/fase1.json',
             forceTileSize: Size(Constants.tileSize, Constants.tileSize),
@@ -101,6 +101,7 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
                 'trash', (x, y, width, height) => Trash(Position(x, y)))
             ..registerObject('b',
                 (x, y, width, height) => BlockInvisibleWall(Position(x, y))),
+
           background: BackgroundColorGame(Colors.black87),
           cameraZoom: 1.0,
         );

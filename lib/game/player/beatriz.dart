@@ -9,7 +9,7 @@ import 'package:gamejam/game/utils/constants.dart';
 import 'package:gamejam/game/utils/player_spritesheet.dart';
 import 'package:gamejam/game/utils/sound.dart';
 
-class Faxineira extends SimplePlayer with Lighting {
+class Beatriz extends SimplePlayer with Lighting {
   final Position initPosition;
   double attack = 20;
   double stamina = 100;
@@ -23,13 +23,23 @@ class Faxineira extends SimplePlayer with Lighting {
   Rect rectDirectionAttack;
   Sprite spriteDirectionAttack;
   bool showDirection = false;
-  int score = 0;
-  int trashCount = 0;
-  String mission = 'Falar com Léo';
-  String level = 'Cargo: Faxineira';
+
   bool sofreu = false;
 
-  Faxineira(this.initPosition)
+  int killScore = 0;
+  int taskCount = 0;
+
+  String mission1 = 'Falar com Léo';
+  String level1 = 'Cargo: Faxineira';
+
+  String mission2 = ' Tirar Cópias';
+  String level2 = 'Cargo: Analista';
+
+  String mission3 = 'todo';
+  String level3 = 'Cargo: Gestora';
+  String level4 = 'Cargo: CEO';
+
+  Beatriz(this.initPosition)
       : super(
           animation: PlayerSpriteSheet.simpleDirectionAnimation,
           width: Constants.tileSize * 1.2,
@@ -168,7 +178,7 @@ class Faxineira extends SimplePlayer with Lighting {
           showEmote();
           if (!showTalk) {
             showTalk = true;
-            _showTalk(enemies.first);
+            _showTalk1(enemies.first);
           }
         },
       );
@@ -233,7 +243,22 @@ class Faxineira extends SimplePlayer with Lighting {
     );
   }
 
-  void _showTalk(Enemy first) {
+  void _showTalk2(Enemy first) {
+    gameRef.pause();
+    TalkDialog.show(
+        gameRef.context,
+        [
+          _say('Então vim parar aqui de novo...'),
+          _say(
+              'Aparentemente eles estão um pouco mais fortes que dá última vez.'),
+          _say('Vamos lá, você consegue Beatriz!')
+        ],
+        textStyle: Constants.talkTextStyle, finish: () {
+      gameRef.resume();
+    });
+  }
+
+  void _showTalk1(Enemy first) {
     TalkDialog.show(
         gameRef.context,
         [

@@ -1,6 +1,30 @@
 import 'package:bonfire/bonfire.dart';
 
 class CommonSpriteSheet {
+  static Animation get npc1 => Animation.sequenced(
+        'npc/npc1.png',
+        2,
+        amountPerRow: 1,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get npc2 => Animation.sequenced(
+        'npc/npc2.png',
+        2,
+        amountPerRow: 1,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get npc3 => Animation.sequenced(
+        'npc/npc3.png',
+        2,
+        amountPerRow: 1,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
   static Animation get explosionAnimation => Animation.sequenced(
         'player/explosion_fire.png',
         6,
@@ -82,5 +106,26 @@ class CommonSpriteSheet {
         1,
         textureWidth: 160,
         textureHeight: 160,
+      );
+
+  static SimpleDirectionAnimation get simpleNpc1 => SimpleDirectionAnimation(
+        idleLeft: npc1,
+        idleRight: npc1,
+        runLeft: npc1,
+        runRight: npc1,
+      );
+
+  static SimpleDirectionAnimation get simpleNpc2 => SimpleDirectionAnimation(
+        idleLeft: npc2,
+        idleRight: npc2,
+        runLeft: npc2,
+        runRight: npc2,
+      );
+
+  static SimpleDirectionAnimation get simpleNpc3 => SimpleDirectionAnimation(
+        idleLeft: npc3,
+        idleRight: npc3,
+        runLeft: npc3,
+        runRight: npc3,
       );
 }

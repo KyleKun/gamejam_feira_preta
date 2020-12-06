@@ -15,15 +15,15 @@ import '../utils/invisible_walls.dart';
 import '../utils/sound.dart';
 import '../utils/change_map.dart';
 
-class BattleMap extends StatefulWidget {
+class BattleMap2 extends StatefulWidget {
   final Position position;
-  const BattleMap({Key key, this.position}) : super(key: key);
+  const BattleMap2({Key key, this.position}) : super(key: key);
 
   @override
-  _BattleMapState createState() => _BattleMapState();
+  _BattleMap2State createState() => _BattleMap2State();
 }
 
-class _BattleMapState extends State<BattleMap> implements GameListener {
+class _BattleMap2State extends State<BattleMap2> implements GameListener {
   bool showGameOver = false;
 
   GameController _controller = new GameController();
@@ -83,7 +83,7 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
           player: Beatriz(
             widget.position,
           ),
-          interface: BeatrizBattleInterface(),
+          interface: BeatrizBattleInterface2(),
           map: TiledWorldMap(
             'tiled/battle_map.json',
             forceTileSize: Size(Constants.tileSize, Constants.tileSize),
@@ -101,7 +101,7 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
             ..registerObject('right_wall',
                 (x, y, width, height) => VerticalInvisibleWall(Position(x, y)))
             ..registerObject(
-                'enemy', (x, y, width, height) => CommonEnemy1(Position(x, y)))
+                'enemy', (x, y, width, height) => CommonEnemy2(Position(x, y)))
             ..registerObject(
                 'torch', (x, y, width, height) => Torch(Position(x, y)))
             // ..registerObject('barrel',
