@@ -8,7 +8,7 @@ class Sound {
   }
 
   static void attackRange() {
-    Flame.audio.play('attack_fire_ball.wav', volume: 0.3);
+    Flame.audio.play('attack_fire_ball.wav', volume: 0.4);
   }
 
   static void attackEnemyMelee() {
@@ -16,7 +16,7 @@ class Sound {
   }
 
   static void explosion() {
-    Flame.audio.play('explosion.wav');
+    Flame.audio.play('explosion.wav', volume: 0.5);
   }
 
   // static void interaction() {
@@ -43,6 +43,15 @@ class Sound {
   static void playBackgroundSound() {
     stopBackgroundSound();
     Flame.audio.loopLongAudio('song1.mp3', volume: 0.4).then((audioPlayer) {
+      audioBackground = audioPlayer;
+    });
+  }
+
+  static void playBattleSound() {
+    stopBackgroundSound();
+    Flame.audio
+        .loopLongAudio('new_battle_song.mp3', volume: 0.4)
+        .then((audioPlayer) {
       audioBackground = audioPlayer;
     });
   }

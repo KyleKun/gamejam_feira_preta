@@ -2,26 +2,23 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:gamejam/game/decoration/trash.dart';
+import 'package:gamejam/game/npc/npc_1.dart';
+import '../player/faxineira.dart';
+import '../player/faxineira_interface.dart';
+import '../utils/constants.dart';
+import '../utils/invisible_walls.dart';
+import '../utils/sound.dart';
 
-import 'decoration/barrel_draggable.dart';
-import 'decoration/big_table.dart';
-import 'decoration/small_table.dart';
-import 'decoration/torch.dart';
-import 'enemy/common_enemy.dart';
-import 'player/faxineira.dart';
-import 'player/faxineira_interface.dart';
-import 'utils/constants.dart';
-import 'utils/invisible_walls.dart';
-import 'utils/sound.dart';
-
-class Game extends StatefulWidget {
-  const Game({Key key}) : super(key: key);
+class OfficeMap extends StatefulWidget {
+  final Position position;
+  const OfficeMap({Key key, this.position}) : super(key: key);
 
   @override
-  _GameState createState() => _GameState();
+  _OfficeMapState createState() => _OfficeMapState();
 }
 
-class _GameState extends State<Game> implements GameListener {
+class _OfficeMapState extends State<OfficeMap> implements GameListener {
   bool showGameOver = false;
 
   GameController _controller = new GameController();
@@ -60,30 +57,30 @@ class _GameState extends State<Game> implements GameListener {
               size: 100,
               isFixed: true,
             ),
-            actions: [
-              JoystickAction(
-                actionId: 0,
-                sprite: Sprite('joystick_attack.png'),
-                align: JoystickActionAlign.BOTTOM_RIGHT,
-                size: 80,
-                margin: EdgeInsets.only(bottom: 50, right: 50),
-              ),
-              JoystickAction(
-                actionId: 1,
-                sprite: Sprite('joystick_attack_range.png'),
-                spriteBackgroundDirection: Sprite('joystick_background.png'),
-                enableDirection: true,
-                size: 50,
-                margin: EdgeInsets.only(bottom: 50, right: 160),
-              )
-            ],
+            // actions: [
+            //   JoystickAction(
+            //     actionId: 0,
+            //     sprite: Sprite('joystick_attack.png'),
+            //     align: JoystickActionAlign.BOTTOM_RIGHT,
+            //     size: 80,
+            //     margin: EdgeInsets.only(bottom: 50, right: 50),
+            //   ),
+            //   JoystickAction(
+            //     actionId: 1,
+            //     sprite: Sprite('joystick_attack_range.png'),
+            //     spriteBackgroundDirection: Sprite('joystick_background.png'),
+            //     enableDirection: true,
+            //     size: 50,
+            //     margin: EdgeInsets.only(bottom: 50, right: 160),
+            //   )
+            // ],
           ),
           player: Faxineira(
-            Position((5 * Constants.tileSize), (9 * Constants.tileSize)),
+            widget.position,
           ),
-          interface: FaxineiraInterface(),
+          interface: FaxineiraOfficeInterface(),
           map: TiledWorldMap(
-            'tiled/battle_map.json',
+            'tiled/fase1.json',
             forceTileSize: Size(Constants.tileSize, Constants.tileSize),
           )
             ..registerObject(
@@ -99,17 +96,12 @@ class _GameState extends State<Game> implements GameListener {
             ..registerObject('right_wall',
                 (x, y, width, height) => VerticalInvisibleWall(Position(x, y)))
             ..registerObject(
-                'enemy', (x, y, width, height) => CommonEnemy(Position(x, y)))
+                'npc1', (x, y, width, height) => NPC1(Position(x, y)))
             ..registerObject(
-                'torch', (x, y, width, height) => Torch(Position(x, y)))
-            // ..registerObject('barrel',
-            //     (x, y, width, height) => BarrelDraggable(Position(x, y)))
-            ..registerObject('small_table',
-                (x, y, width, height) => SmallTable(Position(x, y)))
-            ..registerObject(
-                'big_table', (x, y, width, height) => BigTable(Position(x, y))),
+                'trash', (x, y, width, height) => Trash(Position(x, y)))
+            ..registerObject('b',
+                (x, y, width, height) => BlockInvisibleWall(Position(x, y))),
           background: BackgroundColorGame(Colors.black87),
-          lightingColorGame: Colors.black.withOpacity(0.5),
           cameraZoom: 1.0,
         );
       },

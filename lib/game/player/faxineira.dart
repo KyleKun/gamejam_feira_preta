@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gamejam/game/utils/common_spritesheet.dart';
 import 'package:gamejam/game/utils/constants.dart';
 import 'package:gamejam/game/utils/player_spritesheet.dart';
@@ -23,6 +24,8 @@ class Faxineira extends SimplePlayer with Lighting {
   Sprite spriteDirectionAttack;
   bool showDirection = false;
   int score = 0;
+  int trashCount = 0;
+  String mission = 'Coletar o lixo';
   String level = 'Cargo: Faxineira';
 
   Faxineira(this.initPosition)
@@ -56,11 +59,12 @@ class Faxineira extends SimplePlayer with Lighting {
   void joystickAction(JoystickActionEvent event) {
     if (isDead) return;
 
-    // if (gameRef.joystickController.keyboardEnable) {
-    //   if (event.id == LogicalKeyboardKey.space.keyId) {
-    //     actionAttack();
-    //   }
-    // }
+    if (gameRef.joystickController.keyboardEnable) {
+      if (event.id == LogicalKeyboardKey.space.keyId) {
+        Sound.attackPlayerMelee();
+        actionAttack();
+      }
+    }
 
     if (event.id == 0 && event.event == ActionEvent.DOWN) {
       Sound.attackPlayerMelee();

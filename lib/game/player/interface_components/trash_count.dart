@@ -4,14 +4,14 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:gamejam/game/player/faxineira.dart';
 
-class Score extends InterfaceComponent {
+class TrashCount extends InterfaceComponent {
   final size;
-  int score = 0;
+  int trashCount = 0;
 
-  Score(this.size)
+  TrashCount(this.size)
       : super(
           id: 3,
-          position: Position(size - 80, 20),
+          position: Position(size - 130, 20),
           height: 16,
           width: 16,
         );
@@ -22,7 +22,7 @@ class Score extends InterfaceComponent {
   void update(double t) {
     if (this.gameRef.player != null) {
       if (this.gameRef.player is Faxineira) {
-        score = (this.gameRef.player as Faxineira).score;
+        trashCount = (this.gameRef.player as Faxineira).trashCount;
       }
     }
     super.update(t);
@@ -39,8 +39,8 @@ class Score extends InterfaceComponent {
   void _drawScore(Canvas canvas) {
     config.render(
       canvas,
-      "$score/6",
-      Position(size - 80, 20),
+      "Lixo: $trashCount/3",
+      Position(size - 130, 20),
     );
   }
 }

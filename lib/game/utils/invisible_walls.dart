@@ -48,3 +48,26 @@ class VerticalInvisibleWall extends GameDecoration {
     super.render(canvas);
   }
 }
+
+class BlockInvisibleWall extends GameDecoration {
+  BlockInvisibleWall(Position initPosition)
+      : super.sprite(
+          null,
+          initPosition: initPosition,
+          width: Constants.tileSize * 1.2,
+          height: Constants.tileSize * 1.2,
+          collision: Collision(
+            width: Constants.tileSize * 1.2,
+            height: Constants.tileSize * 1.2,
+            align: Offset(
+              Constants.tileSize * 0.1,
+              0,
+            ),
+          ),
+        );
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+  }
+}

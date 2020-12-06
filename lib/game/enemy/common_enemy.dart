@@ -1,15 +1,19 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flame/position.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gamejam/game/map/office_map.dart';
 import 'package:gamejam/game/player/faxineira.dart';
 import 'package:gamejam/game/utils/common_spritesheet.dart';
 import 'package:gamejam/game/utils/constants.dart';
 import 'package:gamejam/game/utils/enemy_spritesheet.dart';
 import 'package:gamejam/game/utils/sound.dart';
+import '../utils/change_map.dart';
 
 class CommonEnemy extends SimpleEnemy {
   double attack = 20;
+  bool completedBattle = false;
 
   CommonEnemy(Position initPosition)
       : super(
@@ -27,10 +31,26 @@ class CommonEnemy extends SimpleEnemy {
                   Constants.tileSize * 0.4,
                 )));
 
+  void _goToOffice(BuildContext context) {
+    {
+      context.goTo(OfficeMap(
+        position: Position(
+          (kIsWeb ? 15 * Constants.tileSize : 20 * Constants.tileSize),
+          (4 * Constants.tileSize),
+        ),
+      ));
+    }
+  }
+
   @override
   void update(double dt) {
     super.update(dt);
     if (this.isDead) return;
+    if ((gameRef.player as Faxineira).score == 6 && !completedBattle) {
+      // TODO: insert talk
+      completedBattle = true;
+      _goToOffice(gameRef.context);
+    }
 
     this.seePlayer(
       observed: (player) {
@@ -59,16 +79,18 @@ class CommonEnemy extends SimpleEnemy {
         position: position,
       ),
     );
-    gameRef.add(CommonEnemy(
-        Position((5.5 * Constants.tileSize), (3.8 * Constants.tileSize))));
-    (gameRef.player as Faxineira).score += 1;
+    if ((gameRef.player as Faxineira).score < 6) {
+      gameRef.add(CommonEnemy(
+          Position((5.5 * Constants.tileSize), (3.8 * Constants.tileSize))));
+      (gameRef.player as Faxineira).score += 1;
+    }
     remove();
     super.die();
   }
 
   void execAttack() {
     if (gameRef.player != null && gameRef.player.isDead) return;
-    Sound.attackEnemyMelee();
+
     this.simpleAttackMelee(
       heightArea: width,
       widthArea: width,
@@ -79,6 +101,7 @@ class CommonEnemy extends SimpleEnemy {
       attackEffectRightAnim: CommonSpriteSheet.blackAttackEffectRight,
       attackEffectTopAnim: CommonSpriteSheet.blackAttackEffectTop,
     );
+    Sound.attackEnemyMelee();
   }
 
   @override
