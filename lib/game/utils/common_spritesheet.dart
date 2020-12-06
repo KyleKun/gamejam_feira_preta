@@ -77,31 +77,10 @@ class CommonSpriteSheet {
         textureHeight: 16,
       );
 
-  static Animation get fireBallRight => Animation.sequenced(
-        'player/fireball_right.png',
-        3,
-        textureWidth: 23,
-        textureHeight: 23,
-      );
-
-  static Animation get fireBallLeft => Animation.sequenced(
-        'player/fireball_left.png',
-        3,
-        textureWidth: 23,
-        textureHeight: 23,
-      );
-
-  static Animation get fireBallBottom => Animation.sequenced(
-        'player/fireball_bottom.png',
-        3,
-        textureWidth: 23,
-        textureHeight: 23,
-      );
-
-  static Animation get fireBallTop => Animation.sequenced(
-        'player/fireball_top.png',
-        3,
-        textureWidth: 23,
-        textureHeight: 23,
+  static Animation get vassouraTop => Animation.sequenced(
+        'player/vassoura.png',
+        1,
+        textureWidth: 160,
+        textureHeight: 160,
       );
 }

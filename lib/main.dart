@@ -8,8 +8,8 @@ import 'game/utils/constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Comment for running in browser
-  //await Flame.util.setLandscape();
-  //await Flame.util.fullScreen();
+  // await Flame.util.setLandscape();
+  // await Flame.util.fullScreen();
   runApp(MaterialApp(home: Menu(), debugShowCheckedModeBanner: false));
 }
 
@@ -32,7 +32,7 @@ class Menu extends StatelessWidget {
                         position: Position(
                           (kIsWeb
                               ? 18 * Constants.tileSize
-                              : 13 * Constants.tileSize),
+                              : 11 * Constants.tileSize),
                           (4 * Constants.tileSize),
                         ),
                       ),

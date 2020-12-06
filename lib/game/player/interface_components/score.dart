@@ -39,7 +39,7 @@ class Score extends InterfaceComponent {
   void _drawScore(Canvas canvas) {
     config.render(
       canvas,
-      "$score/6",
+      "$score/4",
       Position(size - 80, 20),
     );
   }

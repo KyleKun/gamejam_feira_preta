@@ -33,12 +33,15 @@ class CommonEnemy extends SimpleEnemy {
 
   void _goToOffice(BuildContext context) {
     {
-      context.goTo(OfficeMap(
-        position: Position(
-          (kIsWeb ? 15 * Constants.tileSize : 20 * Constants.tileSize),
-          (4 * Constants.tileSize),
-        ),
-      ));
+      Sound.stopBackgroundSound();
+      Future.delayed(Duration(milliseconds: (1 * 1000)), () {
+        context.goTo(new OfficeMap(
+          position: Position(
+            (kIsWeb ? 18 * Constants.tileSize : 11 * Constants.tileSize),
+            (17 * Constants.tileSize),
+          ),
+        ));
+      });
     }
   }
 
@@ -46,7 +49,7 @@ class CommonEnemy extends SimpleEnemy {
   void update(double dt) {
     super.update(dt);
     if (this.isDead) return;
-    if ((gameRef.player as Faxineira).score == 6 && !completedBattle) {
+    if ((gameRef.player as Faxineira).score == 4 && !completedBattle) {
       // TODO: insert talk
       completedBattle = true;
       _goToOffice(gameRef.context);
@@ -101,7 +104,6 @@ class CommonEnemy extends SimpleEnemy {
       attackEffectRightAnim: CommonSpriteSheet.blackAttackEffectRight,
       attackEffectTopAnim: CommonSpriteSheet.blackAttackEffectTop,
     );
-    Sound.attackEnemyMelee();
   }
 
   @override

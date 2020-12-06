@@ -43,16 +43,8 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
 
   @override
   void dispose() {
-    Sound.stopBackgroundSound();
+    //Sound.stopBackgroundSound();
     super.dispose();
-  }
-
-  void _goToOffice(BuildContext context) {
-    {
-      context.goTo(BattleMap(
-        position: Position(Constants.tileSize * 2, Constants.tileSize * 10),
-      ));
-    }
   }
 
   @override

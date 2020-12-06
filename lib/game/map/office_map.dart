@@ -21,7 +21,7 @@ class OfficeMap extends StatefulWidget {
 class _OfficeMapState extends State<OfficeMap> implements GameListener {
   bool showGameOver = false;
 
-  GameController _controller = new GameController();
+  //GameController _controller = new GameController();
 
   void changeCountLiveEnemies(int count) {
     return;
@@ -31,14 +31,14 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
 
   @override
   void initState() {
-    _controller = GameController()..setListener(this);
+    //_controller = GameController()..setListener(this);
     Sound.playBackgroundSound();
     super.initState();
   }
 
   @override
   void dispose() {
-    Sound.stopBackgroundSound();
+    //Sound.stopBackgroundSound();
     super.dispose();
   }
 

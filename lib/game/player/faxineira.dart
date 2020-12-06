@@ -14,7 +14,7 @@ class Faxineira extends SimplePlayer with Lighting {
   double attack = 20;
   double stamina = 100;
   double initSpeed = Constants.tileSize * 3;
-  IntervalTick _timerStamina = IntervalTick(300);
+  IntervalTick _timerStamina = IntervalTick(250);
   IntervalTick _timerAttackRange = IntervalTick(100);
   IntervalTick _timerSeeEnemy = IntervalTick(500);
   bool showObserveEnemy = false;
@@ -25,14 +25,15 @@ class Faxineira extends SimplePlayer with Lighting {
   bool showDirection = false;
   int score = 0;
   int trashCount = 0;
-  String mission = 'Coletar o lixo';
+  String mission = 'Falar com Léo';
   String level = 'Cargo: Faxineira';
+  bool sofreu = false;
 
   Faxineira(this.initPosition)
       : super(
           animation: PlayerSpriteSheet.simpleDirectionAnimation,
-          width: Constants.tileSize,
-          height: Constants.tileSize,
+          width: Constants.tileSize * 1.2,
+          height: Constants.tileSize * 1.2,
           initPosition: initPosition,
           life: 200,
           speed: Constants.tileSize * 3,
@@ -126,7 +127,7 @@ class Faxineira extends SimplePlayer with Lighting {
     decrementStamina(10);
     this.simpleAttackRangeByAngle(
       id: {'ddd': 'kkkkk'},
-      animationTop: CommonSpriteSheet.fireBallTop,
+      animationTop: CommonSpriteSheet.vassouraTop,
       animationDestroy: CommonSpriteSheet.explosionAnimation,
       radAngleDirection: angleRadAttack,
       destroy: () => Sound.explosion(),
@@ -150,6 +151,11 @@ class Faxineira extends SimplePlayer with Lighting {
   void update(double dt) {
     if (this.isDead || gameRef?.size == null) return;
     _verifyStamina(dt);
+
+    if (this.sofreu == true) {
+      this.sofreu = false;
+      showEmote();
+    }
 
     if (_timerSeeEnemy.update(dt) && !showObserveEnemy) {
       this.seeEnemy(
@@ -199,6 +205,7 @@ class Faxineira extends SimplePlayer with Lighting {
           fontSize: width / 3,
           color: Colors.red,
         ));
+    Sound.attackEnemyMelee();
     super.receiveDamage(damage, from);
   }
 
@@ -236,11 +243,13 @@ class Faxineira extends SimplePlayer with Lighting {
         ],
         textStyle: Constants.talkTextStyle, finish: () {
       gameRef.gameCamera.moveToTargetAnimated(first, zoom: 2, finish: () {
-        Future.delayed(Duration(milliseconds: (2 * 1000)), () {
+        Future.delayed(Duration(milliseconds: (1 * 1000)), () {
           TalkDialog.show(
               gameRef.context,
               [
                 _say('Eu nunca vi um monstro tão feio na vida...'),
+                _say(
+                    'Logo quando eu acabei de ouvir algo horrível, vim parar aqui...'),
                 _say('Ainda bem que eu trouxe minha vassoura!')
               ],
               textStyle: Constants.talkTextStyle, finish: () {

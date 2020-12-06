@@ -3,38 +3,74 @@ import 'package:bonfire/bonfire.dart';
 // TODO: replace images and rename it
 class PlayerSpriteSheet {
   static Animation get idleLeft => Animation.sequenced(
-        "player/knight_idle_left.png",
-        6,
-        textureWidth: 16,
-        textureHeight: 16,
+        "player/faxineira_left.png",
+        1,
+        textureWidth: 160,
+        textureHeight: 160,
       );
 
   static Animation get idleRight => Animation.sequenced(
-        "player/knight_idle.png",
-        6,
-        textureWidth: 16,
-        textureHeight: 16,
+        "player/faxineira_right.png",
+        1,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get idleTop => Animation.sequenced(
+        "player/faxineira_top.png",
+        1,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get idleBottom => Animation.sequenced(
+        "player/faxineira_bottom.png",
+        1,
+        textureWidth: 160,
+        textureHeight: 160,
       );
 
   static Animation get runRight => Animation.sequenced(
-        "player/knight_run.png",
-        6,
-        textureWidth: 16,
-        textureHeight: 16,
+        "player/faxineira_right.png",
+        8,
+        amountPerRow: 3,
+        textureWidth: 160,
+        textureHeight: 160,
       );
 
   static Animation get runLeft => Animation.sequenced(
-        "player/knight_run_left.png",
+        "player/faxineira_left.png",
+        8,
+        amountPerRow: 3,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get runTop => Animation.sequenced(
+        "player/faxineira_top.png",
         6,
-        textureWidth: 16,
-        textureHeight: 16,
+        amountPerRow: 2,
+        textureWidth: 160,
+        textureHeight: 160,
+      );
+
+  static Animation get runBottom => Animation.sequenced(
+        "player/faxineira_bottom.png",
+        6,
+        amountPerRow: 2,
+        textureWidth: 160,
+        textureHeight: 160,
       );
 
   static SimpleDirectionAnimation get simpleDirectionAnimation =>
       SimpleDirectionAnimation(
         idleLeft: idleLeft,
         idleRight: idleRight,
+        idleBottom: idleTop,
+        idleTop: idleBottom,
         runLeft: runLeft,
         runRight: runRight,
+        runBottom: runTop,
+        runTop: runBottom,
       );
 }
