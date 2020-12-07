@@ -19,8 +19,8 @@ Level Up, Beatriz! é um jogo de aventura em Pixel Art com elementos de RPG onde
 - Progressão de nível atrelado à história
  
  ### 🔗 Links
-- Jogar no Browser: [Link]()
-- Video Gameplay: [Youtube]()
+- Jogar no Browser: [Link](https://levelupbeatriz.netlify.app/#/)
+- Video Gameplay: [Youtube](https://youtu.be/rHv91aXEiDs)
  
  ### ⚙ Tecnologias
  - *[Flutter](https://flutter.dev/)* 
