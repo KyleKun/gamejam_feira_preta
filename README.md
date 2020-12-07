@@ -1,6 +1,6 @@
 # Game Jam Feira Preta > *Level Up, Beatriz!*
 
-![Alt Text](https://imgur.com/w84VNoa)
+![Alt Text](https://i.imgur.com/w84VNoa.png)
 
 ## 🙌🏿 O desafio: Letramento Racial
 
