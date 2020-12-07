@@ -4,13 +4,16 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gamejam/game/map/office_map.dart';
 import 'package:gamejam/game/utils/common_spritesheet.dart';
 import 'package:gamejam/game/utils/constants.dart';
 import 'package:gamejam/game/utils/player_spritesheet.dart';
+import '../utils/change_map.dart';
 import 'package:gamejam/game/utils/sound.dart';
 
 class Beatriz extends SimplePlayer with Lighting {
   final Position initPosition;
+  final int phase;
   double attack = 20;
   double stamina = 100;
   double initSpeed = Constants.tileSize * 3;
@@ -35,11 +38,11 @@ class Beatriz extends SimplePlayer with Lighting {
   String mission2 = ' Tirar Cópias';
   String level2 = 'Cargo: Analista';
 
-  String mission3 = 'todo';
+  String mission3 = 'Falar com Ivo';
   String level3 = 'Cargo: Gestora';
   String level4 = 'Cargo: CEO';
 
-  Beatriz(this.initPosition)
+  Beatriz(this.initPosition, this.phase)
       : super(
           animation: PlayerSpriteSheet.simpleDirectionAnimation,
           width: Constants.tileSize * 1.2,
@@ -112,6 +115,16 @@ class Beatriz extends SimplePlayer with Lighting {
       ),
     );
     Sound.stopBackgroundSound();
+    Future.delayed(Duration(milliseconds: (2 * 1000)), () {
+      gameRef.context.goTo(
+        OfficeMap(
+          position: Position(
+            (16 * Constants.tileSize),
+            (4 * Constants.tileSize),
+          ),
+        ),
+      );
+    });
     super.die();
   }
 
@@ -178,7 +191,19 @@ class Beatriz extends SimplePlayer with Lighting {
           showEmote();
           if (!showTalk) {
             showTalk = true;
-            _showTalk1(enemies.first);
+            switch (phase) {
+              case 1:
+                _showTalk1(enemies.first);
+                break;
+              case 2:
+                _showTalk2(enemies.first);
+                break;
+              case 3:
+                _showTalk3(enemies.first);
+                break;
+              default:
+                print('quebrou');
+            }
           }
         },
       );
@@ -241,6 +266,27 @@ class Beatriz extends SimplePlayer with Lighting {
         ),
       ),
     );
+  }
+
+  void _showTalk3(Enemy first) {
+    gameRef.pause();
+    TalkDialog.show(
+        gameRef.context,
+        [
+          _say('Acredito que eu finalmente entendi do que isso se trata...'),
+          _say(
+              'Esses monstros são como se fossem uma representação dos sentimentos racistas das pessoas.'),
+          _say(
+              'Mas não importa o que aconteça, nada irá me impedir de alcançar a Presidência!'),
+          _say(
+              'Irei provar meu valor para o mundo e inspirar o maior número de pessoas possível.'),
+          _say(
+              'A mudança necessita de ação. E afinal de contas, se não for eu, quem será?'),
+          _say('Venham, monstros. Vou lhes ensinar como se brinca.'),
+        ],
+        textStyle: Constants.talkTextStyle, finish: () {
+      gameRef.resume();
+    });
   }
 
   void _showTalk2(Enemy first) {

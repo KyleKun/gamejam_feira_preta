@@ -106,6 +106,7 @@ class NPC1 extends GameDecoration with Sensor {
   }
 
   void _pontoRacista1() {
+    Sound.stopBackgroundSound();
     gameRef.gameCamera.moveToPositionAnimated(
         Position((kIsWeb ? 18 * Constants.tileSize : 18 * Constants.tileSize),
             (8 * Constants.tileSize)),

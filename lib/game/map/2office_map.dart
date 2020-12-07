@@ -49,8 +49,6 @@ class _OfficeMap2State extends State<OfficeMap2> implements GameListener {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        Constants.tileSize = max(constraints.maxHeight, constraints.maxWidth) /
-            (kIsWeb ? 25 : 22);
         return BonfireTiledWidget(
           joystick: Joystick(
             keyboardEnable: true,
@@ -78,9 +76,7 @@ class _OfficeMap2State extends State<OfficeMap2> implements GameListener {
             //   )
             // ],
           ),
-          player: Beatriz(
-            widget.position,
-          ),
+          player: Beatriz(widget.position, 2),
           interface: BeatrizOfficeInterface2(), // _getInterface(),
           map: TiledWorldMap(
             'tiled/fase2.json',

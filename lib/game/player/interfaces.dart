@@ -70,7 +70,6 @@ class BeatrizOfficeInterface3 extends GameInterface {
     add(BarLifeComponent());
     add(Level3(size.width));
     add(Mission3(size.width));
-    add(Punho(size.width));
     add(TaskCount3(size.width));
     super.resize(size);
   }

@@ -1,5 +1,7 @@
 # Game Jam Feira Preta > *Level Up, Beatriz!*
 
+![Alt Text](https://imgur.com/w84VNoa)
+
 ## 🙌🏿 O desafio: Letramento Racial
 
 *Desconstruir formas de pensar e agir que foram naturalizadas.*<br />
@@ -18,7 +20,6 @@ Level Up, Beatriz! é um jogo de aventura em Pixel Art com elementos de RPG onde
  
  ### 🔗 Links
 - Jogar no Browser: [Link]()
-- Baixar Apk para Android: [Link]()
 - Video Gameplay: [Youtube]()
  
  ### ⚙ Tecnologias

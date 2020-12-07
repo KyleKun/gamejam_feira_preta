@@ -75,9 +75,7 @@ class _OfficeMapState extends State<OfficeMap> implements GameListener {
             //   )
             // ],
           ),
-          player: Beatriz(
-            widget.position,
-          ),
+          player: Beatriz(widget.position, 1),
           interface: BeatrizOfficeInterface(), // _getInterface(),
           map: TiledWorldMap(
             'tiled/fase1.json',

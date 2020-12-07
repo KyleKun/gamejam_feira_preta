@@ -3,6 +3,7 @@ import 'package:flame/position.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gamejam/game/enemy/end_game.dart';
 import 'package:gamejam/game/map/2office_map.dart';
 import 'package:gamejam/game/map/3office_map.dart';
 import 'package:gamejam/game/map/office_map.dart';
@@ -245,14 +246,11 @@ class CommonEnemy3 extends SimpleEnemy {
                   Constants.tileSize * 0.4,
                 )));
 
-  void _goToOffice(BuildContext context) {
+  void _goToEnd(BuildContext context) {
     {
       Sound.stopBackgroundSound();
       Future.delayed(Duration(milliseconds: (1 * 1000)), () {
-        context.goTo(new OfficeMap3(
-            position: Position(
-                (kIsWeb ? 18 * Constants.tileSize : 11 * Constants.tileSize),
-                (17 * Constants.tileSize))));
+        context.goTo(new EndGame());
       });
     }
   }
@@ -264,7 +262,7 @@ class CommonEnemy3 extends SimpleEnemy {
     if ((gameRef.player as Beatriz).killScore == 8 && !completedBattle) {
       // TODO: insert talk
       completedBattle = true;
-      _goToOffice(gameRef.context);
+      _goToEnd(gameRef.context);
     }
 
     this.seePlayer(

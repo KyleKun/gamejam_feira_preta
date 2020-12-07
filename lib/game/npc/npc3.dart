@@ -44,7 +44,7 @@ class NPC3 extends GameDecoration with Sensor {
       hasContact = true;
       if (!_showConversation) {
         _showConversation = true;
-        _giveTrashTask();
+        _givePaperTask();
       }
     }
   }
@@ -65,7 +65,6 @@ class NPC3 extends GameDecoration with Sensor {
   void update(double dt) {
     if ((gameRef.player as Beatriz).taskCount == 1 && !_completedTask) {
       _completedTask = true;
-      (gameRef.player as Beatriz).mission3 = 'Falar com Léo';
       Future.delayed(Duration(milliseconds: (10 * 1000)), () {
         _pontoRacista3();
       });
@@ -80,7 +79,7 @@ class NPC3 extends GameDecoration with Sensor {
       Flame.util.animationAsWidget(
         Position(80, 100),
         FlameAnimation.Animation.sequenced(
-          "npc/npc1.png",
+          "npc/npc3.png",
           1,
           textureWidth: 160,
           textureHeight: 160,
@@ -90,37 +89,44 @@ class NPC3 extends GameDecoration with Sensor {
     );
   }
 
-  void _giveTrashTask() {
+  void _givePaperTask() {
     TalkDialog.show(
         gameRef.context,
         [
-          talkToPlayer('todo'),
+          talkToPlayer(
+              'Opa, chegou em bom momento, poderia pegar esse papel atrás de mim?'),
+          talkToPlayer('Acabou de cair e minhas costas estão me matando...'),
+          talkToPlayer('É só colocar em cima daquela mesa.'),
         ],
         textStyle: Constants.talkTextStyle, finish: () {
-      (gameRef.player as Beatriz).mission3 = ' todo';
+      (gameRef.player as Beatriz).mission3 = ' Pegar Papel';
+      Future.delayed(Duration(milliseconds: (2 * 1000)), () {
+        (gameRef.player as Beatriz).taskCount += 1;
+      });
     });
   }
 
   void _pontoRacista3() {
-    gameRef.gameCamera.moveToPositionAnimated(
-        Position((kIsWeb ? 18 * Constants.tileSize : 18 * Constants.tileSize),
-            (8 * Constants.tileSize)),
-        zoom: 2, finish: () {
-      Future.delayed(Duration(milliseconds: (1 * 1000)), () {
-        TalkDialog.show(
-            gameRef.context,
-            [
-              talkToPlayer('todo'),
-            ],
-            textStyle: Constants.talkTextStyle, finish: () {
-          gameRef.gameCamera.moveToPlayerAnimated();
-          Future.delayed(Duration(milliseconds: (2 * 1000)), () {
-            (gameRef.player as Beatriz).sofreu = true;
-          });
-          Future.delayed(Duration(milliseconds: (3 * 1000)), () {
-            _goToBattle(gameRef.context);
-          });
-        });
+    Sound.stopBackgroundSound();
+    TalkDialog.show(
+        gameRef.context,
+        [
+          talkToPlayer('Viu?!'),
+          talkToPlayer('Esse é o tipo de tarefa que você nasceu para fazer.'),
+          talkToPlayer(
+              'Não sei como consegui chegar à um cargo de gestão, mas você não tem chances contra alguém como eu.'),
+          talkToPlayer(
+              'Seu currículo é uma piada comparado ao de muitos outros aqui.'),
+          talkToPlayer('Não existem CEOs vindos da favela assim como você.'),
+          talkToPlayer(
+              'Coloque-se no seu lugar e se contente com o cargo atual. Você já ganha até demais.'),
+        ],
+        textStyle: Constants.talkTextStyle, finish: () {
+      Future.delayed(Duration(milliseconds: (2 * 1000)), () {
+        (gameRef.player as Beatriz).sofreu = true;
+      });
+      Future.delayed(Duration(milliseconds: (3 * 1000)), () {
+        _goToBattle(gameRef.context);
       });
     });
   }

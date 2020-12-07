@@ -51,8 +51,6 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        Constants.tileSize = max(constraints.maxHeight, constraints.maxWidth) /
-            (kIsWeb ? 25 : 22);
         return BonfireTiledWidget(
           joystick: Joystick(
             keyboardEnable: true,
@@ -80,9 +78,7 @@ class _BattleMapState extends State<BattleMap> implements GameListener {
               )
             ],
           ),
-          player: Beatriz(
-            widget.position,
-          ),
+          player: Beatriz(widget.position, 1),
           interface: BeatrizBattleInterface(),
           map: TiledWorldMap(
             'tiled/battle_map.json',

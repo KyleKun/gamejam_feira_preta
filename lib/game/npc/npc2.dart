@@ -90,6 +90,7 @@ class NPC2 extends GameDecoration with Sensor {
   }
 
   void _pontoRacista2() {
+    Sound.stopBackgroundSound();
     TalkDialog.show(
         gameRef.context,
         [
