@@ -10,7 +10,7 @@ Se não admitirmos que nossa sociedade é organizada a partir de uma perspectiva
 
 ## 👩🏿 A solução: Level Up, Beatriz!
 
-Level Up, Beatriz! é um jogo de aventura em Pixel Art com elementos de RPG onde o jogador controla Beatriz, uma mulher negra esforçada e batalhadora de origem humilde, que como faxineira em uma empresa de AR/VR, e, nas horas vagas, estuda para conseguir o cargo de analista e crescer na empresa em que trabalha. Beatriz terá que superar uma série de dificuldades, onde lutará com monstros que representam o racismo na sociedade, provando assim para o mundo e para si mesma que ela é capaz de conquistar todos os seus objetivos.
+Level Up, Beatriz! é um jogo de aventura em Pixel Art com elementos de RPG onde o jogador controla Beatriz, uma mulher negra esforçada e batalhadora de origem humilde, que atua como faxineira em uma empresa de AR/VR, e, nas horas vagas, estuda para conseguir o cargo de analista e crescer na empresa em que trabalha. Beatriz terá que superar uma série de dificuldades, onde lutará com monstros que representam o racismo na sociedade, provando assim para o mundo e para si mesma que ela é capaz de conquistar todos os seus objetivos.
 
 ### 🛠 Principais Mecânicas
 - Mini Tasks
